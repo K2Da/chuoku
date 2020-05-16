@@ -19,9 +19,9 @@ pub fn read_aws_config() -> Result<ProfileMap> {
         .map_err(|e| CredentialFileError(format!("{:?}", e)))?;
     read_credentials(&cred, &mut props)?;
 
-    let ngydv = Ini::load_from_file(file::ngydv_config_file()?)
-        .map_err(|e| NgydvConfigError(format!("{:?}", e)))?;
-    read_ngydv(&ngydv, &mut props)?;
+    if let Ok(ngydv) = Ini::load_from_file(file::ngydv_config_file()?)  {
+        read_ngydv(&ngydv, &mut props)?;
+    }
 
     let mut profiles = ProfileMap::new();
     for (name, prop) in props.iter() {

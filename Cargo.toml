@@ -1,6 +1,6 @@
 [package]
 name = "chuoku"
-version = "0.1.0"
+version = "0.1.2"
 license = "Apache-2.0"
 authors = ["K2Da <id.k2da@gmail.com>"]
 edition = "2018"

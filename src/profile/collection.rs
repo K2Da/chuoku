@@ -34,6 +34,17 @@ impl ProfileMap {
         self.map.iter_mut()
     }
 
+    pub fn profile_by_key(&self, access_key_id: &str, secret_access_key: &str) -> Option<&Profile> {
+        for (_, profile) in self.map.iter() {
+            if let Some(cred) = &profile.credential {
+                if cred.access_key_id == access_key_id && cred.secret_access_key == secret_access_key {
+                    return Some(profile)
+                }
+            }
+        }
+        None
+    }
+
     pub fn profiles(&self) -> Vec<&Profile> {
         self.map.values().collect::<Vec<&Profile>>()
     }

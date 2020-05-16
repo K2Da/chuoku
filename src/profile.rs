@@ -1,5 +1,6 @@
 mod collection;
 mod export;
+pub mod show;
 pub use self::collection::ProfileMap;
 use crate::error::Error::*;
 use crate::error::*;
@@ -127,10 +128,7 @@ impl Profile {
                     )],
                 )),
                 ProfileType::AssumeRole(_) | ProfileType::SessionWithMFA => {
-                    Err(ProfileNotForExport(format!(
-                        "Need to sign in before export profile {}",
-                        self.profile_name
-                    )))
+                    Err(ProfileNotSignedIn(format!("{}", self.profile_name)))
                 }
             },
         }

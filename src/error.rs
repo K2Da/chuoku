@@ -13,8 +13,8 @@ pub enum Error {
     #[error("Profile {0:?} is not for crate session nor assume role")]
     ProfileNotForSignIn(String),
 
-    #[error("Profile {0:?} is not for exoport. {0:?}")]
-    ProfileNotForExport(String),
+    #[error("Profile {0:?} is not signed in.")]
+    ProfileNotSignedIn(String),
 
     #[error("Request get session token error {0:?}")]
     RusotoTlsError(#[from] rusoto_core::request::TlsError),
